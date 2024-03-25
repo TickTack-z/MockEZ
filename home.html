@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(211, 206, 211);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            background-color: rgb(158, 145, 241);
+            height: 50px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 0 20px;
+            justify-content: space-between;
+        }
+
+        .left-content {
+            margin-right: auto;
+        }
+
+        nav a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .loading-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            color: rgb(15, 15, 15);
+            font-size: 24px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 5px 90px;
+            background-color: #c5c2c2;
+            color: rgb(15, 15, 15);
+            text-decoration: none;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            margin-right: 0px;
+        }
+
+        .button.active {
+            background-color: rgb(158, 145, 241);
+            color: #000000;
+        }
+
+        .button-content {
+            display: none;
+            background-color: white;
+            border-top: none;
+            padding: 100px;
+            margin-right: 10%;
+            margin-left: 10%;
+        }
+
+        .button-content.active {
+            display: block;
+        }
+
+        .customer-service-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="left-content">
+            <a href="#">MockEZ</a>
+        </div>
+        <div class="right-content">
+            <a href="#"><img src="loading.gif"></a>
+        </div>
+    </nav>
+    <div class="loading-icon">
+        <img src="loading.gif">
+        <p>Uploading...</p>
+    </div>
+
+    <div class="button-container">
+        <a href="#" class="button" onclick="changeTab(event, 'tab1')">按钮1</a>
+        <a href="#" class="button" onclick="changeTab(event, 'tab2')">按钮2</a>
+        <a href="#" class="button" onclick="changeTab(event, 'tab3')">按钮3</a>
+        <a href="#" class="button" onclick="changeTab(event, 'tab4')">按钮4</a>
+    </div>
+    <div id="tab1" class="button-content">
+        <!-- 标签1的内容 -->
+        <div class="box-container">
+            <h2>标签1内容</h2>
+            <p>这是标签1的内容。</p>
+        </div>
+    </div>
+    <div id="tab2" class="button-content">
+        <!-- 标签2的内容 -->
+        <div class="box-container">
+            <h2>标签2内容</h2>
+            <p>这是标签2的内容。</p>
+        </div>
+    </div>
+    <div id="tab3" class="button-content">
+        <!-- 标签3的内容 -->
+        <div class="box-container">
+            <h2>标签3内容</h2>
+            <p>这是标签3的内容。</p>
+        </div>
+    </div>
+    <div id="tab4" class="button-content">
+        <!-- 标签4的内容 -->
+        <div class="box-container">
+            <h2>标签4内容</h2>
+            <p>这是标签4的内容。</p>
+        </div>
+    </div>
+    <img class="customer-service-button" src="customer-service-icon.png">
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            var firstTab = document.getElementById('tab1');
+            var firstTabLink = document.querySelector('.button');
+
+            firstTab.style.display = 'block';
+            firstTabLink.classList.add('active');
+        });
+        function changeTab(event, tabId) {
+            var tabContents = document.getElementsByClassName('button-content');
+            var tabLinks = document.getElementsByClassName('button');
+
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = 'none';
+            }
+
+            for (var i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove('active');
+            }
+
+            document.getElementById(tabId).style.display = 'block';
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
